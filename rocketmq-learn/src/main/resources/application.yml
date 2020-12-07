@@ -1,0 +1,7 @@
+server:
+  port: 7002
+
+rocketmq:
+  name-server: wwww.myrocketmq.com:9876
+  producer:
+    group: mq-produce

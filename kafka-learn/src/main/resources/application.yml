@@ -1,0 +1,13 @@
+server:
+  port: 7003
+spring:
+  kafka:
+    bootstrap-servers: 192.168.106.116:9092
+    producer:
+      acks: 1
+      batch-size: 16384
+      retries: 0
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      client-id: message-kafka
