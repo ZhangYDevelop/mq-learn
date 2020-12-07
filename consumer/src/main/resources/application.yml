@@ -1,5 +1,5 @@
 server:
-  port: 7004
+  port: 7001
 
 rocketmq:
   name-server: wwww.myrocketmq.com:9876
@@ -17,5 +17,5 @@ spring:
         group-id: test
         auto-offset-reset: earliest
         # kafka根据clientid来分分配客户端订阅的分区，kafka默认所有的topic只有一个分区，这个可以在{kafka安装目录}/conf/server.conf 修改
-        #num.partitions=3 属性。
-        client-id: consumer-2
+        # num.partitions=3 属性。
+        client-id: consumer-1
