@@ -1,6 +1,6 @@
-package com.zy.mq.consumer.service.impl;
+package com.zy.mq.rocketmq.service.impl;
 
-import com.zy.mq.consumer.service.SmsService;
+import com.zy.mq.rocketmq.service.SmsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

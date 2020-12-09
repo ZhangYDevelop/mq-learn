@@ -1,7 +1,7 @@
 package com.zy.mq.rocketmq.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zy.entity.dto.OrderDto;
+import com.zy.mq.rocketmq.dto.OrderDTO;
 import com.zy.mq.rocketmq.service.OrderService;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private RocketMQTemplate rocketMQTemplate;
 
-    private final Map<String, OrderDto> orderDtoList = new HashMap<>();
+    private final Map<String, OrderDTO> orderDtoList = new HashMap<>();
 
     @Override
     public ResponseEntity createOrder() {
 
-        OrderDto orderDto = new OrderDto();
+        OrderDTO orderDto = new OrderDTO();
         orderDto.setPrice(78);
         orderDto.setOrderId(UUID.randomUUID().toString());
         orderDto.setProductName("移动套餐");
@@ -40,13 +40,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ResponseEntity saveOrder(OrderDto orderDto) {
+    public ResponseEntity saveOrder(OrderDTO orderDto) {
         this.orderDtoList.put(orderDto.getOrderId(), orderDto);
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<OrderDto> getOrder(String orderId) {
+    public ResponseEntity<OrderDTO> getOrder(String orderId) {
         return ResponseEntity.ok(orderDtoList.get(orderId));
     }
 

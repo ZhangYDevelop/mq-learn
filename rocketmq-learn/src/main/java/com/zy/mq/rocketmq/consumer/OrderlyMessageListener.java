@@ -1,4 +1,4 @@
-package com.zy.mq.consumer.listener.rocketmq;
+package com.zy.mq.rocketmq.consumer;
 
 import org.apache.rocketmq.spring.annotation.ConsumeMode;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;

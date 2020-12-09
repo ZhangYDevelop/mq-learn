@@ -1,7 +1,7 @@
 package com.zy.mq.rocketmq.core;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zy.entity.dto.OrderDto;
+import com.zy.mq.rocketmq.dto.OrderDTO;
 import com.zy.mq.rocketmq.service.OrderService;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
@@ -21,7 +21,7 @@ import java.util.Random;
 @RocketMQTransactionListener(txProducerGroup = "logistics_group" )
 public class LogisticsListenerLocal implements RocketMQLocalTransactionListener {
 
-    private final Map<String, OrderDto> orderDtoList = new HashMap<>();
+    private final Map<String, OrderDTO> orderDtoList = new HashMap<>();
 
     private Logger logger = LoggerFactory.getLogger(LogisticsListenerLocal.class);
 
@@ -34,10 +34,10 @@ public class LogisticsListenerLocal implements RocketMQLocalTransactionListener 
     public RocketMQLocalTransactionState executeLocalTransaction(Message msg, Object arg) {
         String jsonString = new String((byte[])msg.getPayload());
         logger.info("执行本地事务,确认订单是否创建成功：{}", jsonString);
-        OrderDto orderDto = JSONObject.parseObject(jsonString, OrderDto.class);
+        OrderDTO orderDto = JSONObject.parseObject(jsonString, OrderDTO.class);
         String orderId = orderDto.getOrderId();
         if (!StringUtils.isEmpty(orderId)) {
-            OrderDto dto = orderService.getOrder(orderId).getBody();
+            OrderDTO dto = orderService.getOrder(orderId).getBody();
             if (null != dto) {
                 return  RocketMQLocalTransactionState.COMMIT;
             } else {
@@ -55,10 +55,10 @@ public class LogisticsListenerLocal implements RocketMQLocalTransactionListener 
         String jsonString = new String((byte[])msg.getPayload());
         logger.info("回调检查,确认订单是否创建成功：{}", jsonString);
 
-        OrderDto temp = JSONObject.parseObject(jsonString, OrderDto.class);
+        OrderDTO temp = JSONObject.parseObject(jsonString, OrderDTO.class);
         String orderId = temp.getOrderId();
         if ( !StringUtils.isEmpty(orderId)) {
-            OrderDto dto = orderService.getOrder(orderId).getBody();
+            OrderDTO dto = orderService.getOrder(orderId).getBody();
             if (null != dto) {
                 return  RocketMQLocalTransactionState.COMMIT;
             } else {

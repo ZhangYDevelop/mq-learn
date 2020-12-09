@@ -1,8 +1,8 @@
-package com.zy.entity.dto;
+package com.zy.mq.rocketmq.dto;
 
 import java.io.Serializable;
 
-public class OrderDto implements Serializable {
+public class OrderDTO implements Serializable {
 
     private  String orderId;
 

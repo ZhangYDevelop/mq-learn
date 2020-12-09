@@ -17,8 +17,6 @@
         <module>rocketmq-learn</module>
         <module>rabbitmq-learn</module>
         <module>kafka-learn</module>
-        <module>consumer</module>
-        <module>core</module>
     </modules>
 
     <dependencyManagement>

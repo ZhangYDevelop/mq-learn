@@ -1,8 +1,8 @@
-package com.zy.mq.consumer.listener.rocketmq;
+package com.zy.mq.rocketmq.consumer;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zy.entity.dto.OrderDto;
-import com.zy.mq.consumer.service.LogisticsService;
+import com.zy.mq.rocketmq.dto.OrderDTO;
+import com.zy.mq.rocketmq.service.LogisticsService;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class LogisticsListenerLocal implements RocketMQListener<String> {
 
     @Override
     public void onMessage(String message) {
-        OrderDto orderDto = JSONObject.parseObject(message, OrderDto.class);
+        OrderDTO orderDto = JSONObject.parseObject(message, OrderDTO.class);
         logger.info("发起物流订单： {}", message);
         logisticsService.createLogistics(orderDto.getOrderId());
     }

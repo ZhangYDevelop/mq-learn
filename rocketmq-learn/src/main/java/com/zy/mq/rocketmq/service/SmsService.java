@@ -1,4 +1,4 @@
-package com.zy.mq.consumer.service;
+package com.zy.mq.rocketmq.service;
 
 public interface SmsService {
 
