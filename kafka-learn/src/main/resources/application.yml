@@ -3,6 +3,7 @@ server:
 spring:
   kafka:
     bootstrap-servers: 192.168.106.116:9092
+    #生产者
     producer:
       acks: 1
       batch-size: 16384
@@ -11,3 +12,14 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       client-id: message-kafka
+    #消费者
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      #指定分组
+      group-id: test
+      auto-offset-reset: earliest
+      # kafka根据clientid来分分配客户端订阅的分区，kafka默认所有的topic只有一个分区，这个可以在{kafka安装目录}/conf/server.conf 修改
+      # num.partitions=3 属性。
+      client-id: consumer-1
