@@ -1,0 +1,15 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: rabbitmq-learn
+  rabbitmq:
+    addresses: 192.168.106.116
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      direct:
+        acknowledge-mode: auto
+      simple:
+        acknowledge-mode: auto
